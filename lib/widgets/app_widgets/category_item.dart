@@ -1,27 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_/main.dart';
-import 'package:food_/screens/meals.dart';
 
 class CategoryItem extends StatelessWidget {
   static const double OPACITY_VALUE = 0.7;
   static const double RADIOUS = 15;
+  final String id;
   final String title;
   final Color color;
 
-  CategoryItem(this.title, this.color);
+  CategoryItem(this.title, this.color, this.id);
 
   void _moveToSelectedCategory(BuildContext context) {
-    Navigator.of(context).push(_getAdaptiveRoute());
+    Navigator.of(context).pushNamed('/meals-route',
+        arguments: {'title': title, 'color': color, 'id': id});
   }
-
-  PageRoute _getAdaptiveRoute() {
-    return MyApp.DEVICE_PLATFORM
-        ? CupertinoPageRoute(builder: (_) => _getScreenWidget)
-        : MaterialPageRoute(builder: (_) => _getScreenWidget);
-  }
-
-  Widget get _getScreenWidget => MealsScreen(title);
 
   @override
   Widget build(BuildContext context) {
