@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_/models/meal.dart';
+import 'package:food_/config/routs.dart';
 
 class MealItem extends StatelessWidget {
   static const _RADIOUS = 15.0;
@@ -48,7 +49,8 @@ class MealItem extends StatelessWidget {
   }
 
   void _moveToDetailsScreen(BuildContext context) {
-    Navigator.of(context).pushNamed("/meail-details-screen", arguments: mealId);
+    Navigator.of(context)
+        .pushNamed(Routs.MEALS_DETAILS_SCREEN, arguments: mealId);
   }
 
   @override
@@ -93,6 +95,10 @@ class MealItem extends StatelessWidget {
                   child: Material(
                 color: Colors.transparent,
                 child: InkWell(
+                  customBorder: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(15),
+                          topRight: Radius.circular(15))),
                   onTap: () => _moveToDetailsScreen(context),
                   splashColor: Theme.of(context).colorScheme.primary,
                 ),

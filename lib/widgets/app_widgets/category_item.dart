@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_/config/routs.dart';
 
 class CategoryItem extends StatelessWidget {
   static const double OPACITY_VALUE = 0.7;
@@ -11,7 +12,7 @@ class CategoryItem extends StatelessWidget {
   CategoryItem(this.title, this.color, this.id);
 
   void _moveToSelectedCategory(BuildContext context) {
-    Navigator.of(context).pushNamed('/meals-route',
+    Navigator.of(context).pushNamed(Routs.MEALS_SCREEN,
         arguments: {'title': title, 'color': color, 'id': id});
   }
 
