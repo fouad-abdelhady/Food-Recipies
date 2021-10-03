@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:food_/main.dart';
 
 class AppScaffold extends StatelessWidget {
-  ///of type Widget
-  final appBarTitle;
+  final String appBarTitle;
 
-  ///of type Widget
-  final pageBody;
+  final Widget pageBody;
 
-  AppScaffold({this.appBarTitle, this.pageBody});
+  AppScaffold({required this.appBarTitle, required this.pageBody});
   @override
   Widget build(BuildContext context) {
     return MyApp.DEVICE_PLATFORM

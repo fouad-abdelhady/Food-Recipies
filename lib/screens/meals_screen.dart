@@ -22,6 +22,7 @@ class MealsScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           return Center(
             child: MealItem(
+              mealId: catigoryMeals[index].id,
               title: catigoryMeals[index].title,
               imageUrl: catigoryMeals[index].imageUrl,
               duration: catigoryMeals[index].duration,

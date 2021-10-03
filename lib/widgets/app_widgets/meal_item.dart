@@ -5,6 +5,7 @@ import 'package:food_/models/meal.dart';
 class MealItem extends StatelessWidget {
   static const _RADIOUS = 15.0;
 
+  final String mealId;
   final String title;
   final String imageUrl;
 
@@ -14,7 +15,8 @@ class MealItem extends StatelessWidget {
   final Affordability affordability;
 
   MealItem(
-      {required this.title,
+      {required this.mealId,
+      required this.title,
       required this.imageUrl,
       required this.duration,
       required this.complexity,
@@ -45,76 +47,85 @@ class MealItem extends StatelessWidget {
     }
   }
 
+  void _moveToDetailsScreen(BuildContext context) {
+    Navigator.of(context).pushNamed("/meail-details-screen", arguments: mealId);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      splashColor: Theme.of(context).primaryColor,
-      child: Card(
-        elevation: 4,
-        margin: EdgeInsets.all(15),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(_RADIOUS),
-        ),
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(_RADIOUS),
-                      topRight: Radius.circular(_RADIOUS)),
-                  child: Image.network(
-                    imageUrl,
-                    fit: BoxFit.cover,
+    return Card(
+      elevation: 4,
+      margin: EdgeInsets.all(15),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(_RADIOUS),
+      ),
+      child: Column(
+        children: [
+          Stack(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(_RADIOUS),
+                    topRight: Radius.circular(_RADIOUS)),
+                child: Image.network(
+                  imageUrl,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Container(
+                  padding: EdgeInsets.all(5),
+                  color: Colors.black54,
+                  alignment: Alignment.center,
+                  child: Text(
+                    title,
+                    style: Theme.of(context).textTheme.headline5!.copyWith(
+                        color: Colors.white, fontFamily: 'Inconsolata'),
+                    softWrap: true,
+                    overflow: TextOverflow.fade,
                   ),
                 ),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    padding: EdgeInsets.all(5),
-                    color: Colors.black54,
-                    alignment: Alignment.center,
-                    child: Text(
-                      title,
-                      style: Theme.of(context).textTheme.headline5!.copyWith(
-                          color: Colors.white, fontFamily: 'Inconsolata'),
-                      softWrap: true,
-                      overflow: TextOverflow.fade,
+              ),
+              Positioned.fill(
+                  child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: () => _moveToDetailsScreen(context),
+                  splashColor: Theme.of(context).colorScheme.primary,
+                ),
+              ))
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.timer),
+                    SizedBox(
+                      width: 5,
                     ),
-                  ),
+                    Text("$duration mints")
+                  ],
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.attach_money_sharp),
+                    Text("$getAffordabiliy")
+                  ],
+                ),
+                Row(
+                  children: [Icon(Icons.blender), Text("$getComplexity")],
                 )
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.timer),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text("$duration mints")
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.attach_money_sharp),
-                      Text("$getAffordabiliy")
-                    ],
-                  ),
-                  Row(
-                    children: [Icon(Icons.blender), Text("$getComplexity")],
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

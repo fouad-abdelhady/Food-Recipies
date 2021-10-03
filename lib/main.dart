@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_/screens/catigories_screen.dart';
+import 'package:food_/screens/meal_details.dart';
 import 'package:food_/screens/meals_screen.dart';
 
 import 'package:food_/widgets/platform_based_widgets/app_scaffold.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => CatigoriesScreen(),
         '/meals-route': (context) => MealsScreen(),
+        '/meail-details-screen': (context) => MealDetails()
       },
     );
   }
@@ -62,7 +64,7 @@ class HomePage extends StatelessWidget {
     }
 
     return AppScaffold(
-      appBarTitle: getAppBarTitle(),
+      appBarTitle: "Home Page",
       pageBody: getBody(),
     );
   }
