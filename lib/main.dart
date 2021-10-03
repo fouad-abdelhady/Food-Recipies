@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:food_/screens/catigories_screen.dart';
 import 'package:food_/screens/meals_screen.dart';
 
-import 'package:food_/widgets/main_widgets/app_scaffold.dart';
+import 'package:food_/widgets/platform_based_widgets/app_scaffold.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,6 +24,9 @@ class MyApp extends StatelessWidget {
               bodyText1: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
               bodyText2: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
               headline6: TextStyle(
+                fontFamily: 'RobotoCondensed',
+              ),
+              headline5: TextStyle(
                 fontFamily: 'RobotoCondensed',
               )),
           appBarTheme: AppBarTheme(

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import '../widgets/main_widgets/app_scaffold.dart';
+import '../widgets/platform_based_widgets/app_scaffold.dart';
 import 'package:food_/data/catigories_data.dart';
 import '../widgets/app_widgets/category_item.dart';
 
